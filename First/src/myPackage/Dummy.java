@@ -40,6 +40,19 @@ public class Dummy {
 		FirstInterface myUniverslaType = new Class_2();
 		myUniverslaType.myFunnyfunction();
 		
+		FirstInterface mySecondObject;
+		
+		mySecondObject = myUniverslaType;
+		
+		Class c = mySecondObject.getClass();
+		
+		System.out.println(c);
+		Object myWhatEverObject = System.console();
+		
+		Object myWhatEverObject2 = null; 
+		
+		Class whatsTheClass;
+		System.out.println(true);
 	}
 
 }

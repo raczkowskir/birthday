@@ -7,3 +7,4 @@ public class Constans {
 	final double pi = 3.14;	
 	final char initials = 'R';
 }
+ 
