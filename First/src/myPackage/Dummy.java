@@ -1,58 +1,68 @@
 package myPackage;
 
 import java.util.Scanner;
+
 //import myPackage.Functions;
 //import myPackage.Constans;
 //import myPackage.Functions;
 import myPackage.*;
+import myPackage_2.*;
 
-/**
- * @author raczkows
- *
- */
-public class Dummy {
+public class Dummy extends Dummy_p2 {
 
-//	private void myInnerFunction(char coolString) {
-//		Functions.printRR(coolString);
-//	}
+	String funnyVariable = this.thingFromPackage2;
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public String myFunnyFunction(String x) {
+		return x + "is a pebble!";
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 //		Scanner scan = new Scanner(System.in);
-//		System.out.println("What you want?");
-//		String firstName = scan.nextLine();
-//		System.out.println("Put \"" + firstName + "\" in your ass!");
+		
+//		FirstInterface myUniverslaType = new Class_2();
 //		
-//		String name = "Raki";
+		
+//		myUniverslaType.myFunnyfunction();
+//		FirstInterface mySecondObject;
 //		
-//		System.out.println("My funny variable: " + name);
-//		Functions.setName(name);
+//		mySecondObject = myUniverslaType;
+//		
+//		Class c = mySecondObject.getClass();
+//		
+//		System.out.println(c);
+		//		Object myWhatEverObject = System.console();
+		//		
+		//		Object myWhatEverObject2 = null; 
+		//		
+		//		Class whatsTheClass;
 
-		/*
-		 * Dummy newDummy = new Dummy(); Constans newConstans = new Constans();
-		 * newDummy.myInnerFunction(Constans.stupidQuestion);
-		 * newDummy.myInnerFunction(newConstans.initials);
-		 */
+		Dummy myDummy = new Dummy();
+
+
+		System.out.println(
+				myDummy.funnyVariable +
+				" I have an agly feet. " +
+				myDummy.myFunnyFunction("Adrian ")
+				);
+
+
+
 		
-		FirstInterface myUniverslaType = new Class_2();
-		myUniverslaType.myFunnyfunction();
-		
-		FirstInterface mySecondObject;
-		
-		mySecondObject = myUniverslaType;
-		
-		Class c = mySecondObject.getClass();
-		
-		System.out.println(c);
-		Object myWhatEverObject = System.console();
-		
-		Object myWhatEverObject2 = null; 
-		
-		Class whatsTheClass;
-		System.out.println(true);
 	}
 
 }
