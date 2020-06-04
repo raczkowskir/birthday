@@ -30,7 +30,7 @@ public class SimpleThreads {
 					// Print a message
 					threadMessage(importantInfo[i]);
 				}
-			} catch (InterruptedException e) {
+			} catch (InterruptedException | SecurityException e ) {
 				threadMessage("I wasn't done!");
 			}
 		}
@@ -39,14 +39,8 @@ public class SimpleThreads {
 	public static void main(String args[])
 			throws InterruptedException {
 
-		// Delay, in milliseconds before
-		// we interrupt MessageLoop
-		// thread (default one hour).
 		long patience = 1000 * 60 * 60;
 
-		// If command line argument
-		// present, gives patience
-		// in seconds.
 		if (args.length > 0) {
 			try {
 				patience = Long.parseLong(args[0]) * 1000;
