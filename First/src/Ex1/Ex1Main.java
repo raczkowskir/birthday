@@ -1,23 +1,25 @@
 package Ex1;
 // exercise with throwing exceptions
-import java.util.Scanner;
+import java.util.*;
 
 public class Ex1Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InputMismatchException {
 
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("Please type a number:");
-		String strNumber = scan.nextLine();
-		int number = Integer.parseInt(strNumber);
+//		String strNumber = scan.nextLine();
+//		int number = Integer.parseInt(strNumber);
+		int number = 0;
 		try {
-			if (number <0) {
+			number = scan.nextInt();
+			if (number < 0) {
 				throw new IllegalArgumentException("number must be >= 0: " + number);
 			}
 
 		}
-		catch(IllegalArgumentException e) {
+		catch(IllegalArgumentException | InputMismatchException e) {
 			number = number * -1;
 			System.out.println("Moran");
 		}
