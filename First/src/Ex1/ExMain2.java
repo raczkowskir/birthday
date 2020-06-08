@@ -6,6 +6,10 @@ import java.util.regex.Pattern;
 
 public class ExMain2 {
 	public String subject = null;
+	
+	public ExMain2(String subject) {
+		this.subject = subject;
+	}
 
 	public String returnSubject(int subjectId) {   	
 		switch(subjectId) {
@@ -13,6 +17,7 @@ public class ExMain2 {
 				subject = "Biology";
 				break;
 			case 1:
+				
 				subject = "Math";
 				break;
 			case 2:
@@ -57,7 +62,7 @@ public class ExMain2 {
 		int[][] classAndGradesArray = new int[3][4];
 		int[] yourGradesSumArray = new int[3]; 
 		float[] yourGradesAverageArray = new float[3];
-		ExMain2 exMainObject = new ExMain2();
+		ExMain2 exMainObject = new ExMain2("");
 
 		for(int i = 0; i < classAndGradesArray.length; i++) {          
 			for(int j = 0; j < classAndGradesArray[i].length; j++) {
