@@ -3,6 +3,9 @@ package Ex3;
 import java.util.Scanner;
 
 public class Main {
+
+    private Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         Main main = new Main();
         Computation computation;
@@ -18,33 +21,16 @@ public class Main {
         double argument2 = main.getArgument();
 
         double result = computation.compute(argument1, argument2);
-        System.out.println("Result: " + result);
+        System.out.println("Wynik: " + result);
     }
 
     private boolean shouldMultiply() {
-        System.out.println("Do you want to add 2 numbers (A) or multiply them (M)?");
-        
-        Scanner scan = new Scanner(System.in);
-        String response = scan.nextLine();
-        
-		if (response.equals("A") || response.equals("a")) {
-        	return false;
-        }
-        else if(response.equals("M") || response.equals("m")) {
-        	return true;
-        }
-        else {
-        	System.out.println("Sth go wrong, please try again.");
-        	shouldMultiply();
-        }
-        return false;
+        System.out.println("Jaka operacje chcesz wykonac? Napisz M jesli ma to byc mnozenie i nacisnij <Enter>. Mazdy inny wybor oznacza dodawanie.");
+        return scanner.next().equals("M");
     }
 
     private double getArgument() {
-    	System.out.println("Please enter two numbers:");
-        Scanner scan = new Scanner(System.in);
-        int number = scan.nextInt();
-    	
-        return number;
+        System.out.print("Podaj liczbe: ");
+        return scanner.nextDouble();
     }
 }
