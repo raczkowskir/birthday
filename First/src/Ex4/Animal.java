@@ -7,5 +7,4 @@ public abstract class Animal {
 		System.out.println("Overriden by the Animal");
 		return "";
 	}
-
 }
