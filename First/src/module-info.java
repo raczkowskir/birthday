@@ -6,4 +6,5 @@
  *
  */
 module firstRR {
+	requires java.desktop;
 }
