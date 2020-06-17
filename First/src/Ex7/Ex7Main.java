@@ -13,8 +13,8 @@ public final class Ex7Main {
 		 * 
 		 * System.out.println( "This is your human: " + "\n name: " +
 		 * myHuman.getName() + "\n age: " + myHuman.getAge() +
-		 * "\n colour of eyes: " + ColourOfEyes.blue + "\n colour of hair: " +
-		 * ColourOfHair.brown );
+		 * "\n colour of eyes: " + ColourOfEyes.BLUE + "\n colour of hair: " +
+		 * ColourOfHair.BROWN );
 		 */
 		
 		System.out.println(
@@ -24,4 +24,3 @@ public final class Ex7Main {
 			+ Computation.ADD.perform(2,5));
 	}
 }
-

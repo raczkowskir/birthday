@@ -4,19 +4,19 @@ public class Human {
 	private String name;
 	private int age;
 	enum ColourOfEyes {
-		black,
-		blue,
-		grey,
-		green,
-		yellow,
-		brown
+		BLACK,
+		BLUE,
+		GREY,
+		GREEN,
+		YELLOW,
+		BROWN
 	}
 	enum ColourOfHair {
-		brown,
-		black,
-		blonde,
-		ginger,
-		grey
+		BROWN,
+		BLACK,
+		BLONDE,
+		GINGER,
+		GREY
 	}
 	
 	public String getName() {
