@@ -18,9 +18,18 @@ public final class Bank implements BankTransfer {
 		BankAccount myBankAccount = new BankAccount();
 		BankAccount yourBankAccount = new BankAccount();
 
+		System.out.println("myBankAccount hashCode: " + myBankAccount.hashCode());
+		System.out.println("myBankAccount yourBankAccount: " + yourBankAccount.hashCode());
+		System.out.println("Is equal: " + myBankAccount.equals(yourBankAccount));
+		
+		
 		for (int i = 0; i < 5; i++) {
-			globalBank.transfer(myBankAccount, yourBankAccount, 10);
+			globalBank.transfer(myBankAccount, yourBankAccount, 10);			
 		}
+		
+		System.out.println("myBankAccount hashCode: " + myBankAccount.hashCode());
+		System.out.println("myBankAccount yourBankAccount: " + yourBankAccount.hashCode());
+		System.out.println("Is equal: " + myBankAccount.equals(yourBankAccount));
     }
     
 	public static void main(String[] args) {
