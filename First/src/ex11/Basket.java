@@ -29,7 +29,7 @@ public class Basket {
 		try {	
 			number = scan.nextInt();
 		}
-
+		
 		// what to do with InputMismatchException ?
 		catch(ArrayIndexOutOfBoundsException|InputMismatchException e) {
 			System.out.println("You can only type digits (0-9).");
@@ -37,18 +37,18 @@ public class Basket {
 		}
 		return number;
 	}
-
+	
 	private Item[] giveUsOrder() {
 		int i = 0;
 		String Ids = "0123456789";
-
+		
 		System.out.println("Type how many products you want to add:");
 		int arrayLength = getNumber();
-
+			
 		Item[] addedItems = new Item[arrayLength];
-
+		
 		System.out.println("Type the Id number of product you want to add:");
-
+		
 		while(i < arrayLength) {
 			Integer orderInt = getNumber();
 			String orderString = String.valueOf(orderInt);
@@ -61,7 +61,7 @@ public class Basket {
 				i++;
 			} 
 		}
-
+		
 		return addedItems; 
 	}	
 
@@ -83,45 +83,45 @@ public class Basket {
 		}
 		System.out.println("\n The total price of your basket is " 
 				+ String.format("%.2f", totalPrice) + " USD. \n");	
-
+		
 		allowToRemoveProducts(basket, sizeOfBasket);
 		showTheTotalBasketValue(basket);
 	}
 
 	private void allowToRemoveProducts(Basket basket, int sizeOfBasket) {
 		System.out.println("How many products you want to remove from your basket (if none, type 999):");
-
+		
 		int i = 0;
-
+		
 		int arrayLength = getNumber();
-
+		
 		if (arrayLength == 999) {
 			return;
 		}
-
+		
 		Integer[] objectsForRemoving = new Integer[arrayLength];
-
+		
 		System.out.println("Type the list position number of product you want to remove:");
-
+		
 		while(i < arrayLength) {
 			Integer objectForRemoving = getNumber();
-
+			
 			if (objectForRemoving > sizeOfBasket) {
 				System.out.println("You do not have so many products in your basket,"
 						+ " please type the correct number.");
 				continue;
 			}
 			objectsForRemoving[i] = objectForRemoving;
-
+			
 			if (i < (arrayLength - 1)) {
 				System.out.println("Done, type another one:");
 			}
 			i++;
 		}
-
+		
 		removeManyItemsFromBasket(basket, objectsForRemoving);
 	}
-
+	
 	public static void main(String[] args) { 
 
 		System.out.println("Please chose the product you want to add to the basket.");
@@ -132,11 +132,11 @@ public class Basket {
 					+ "  " + String.format("%.2f", Products.values()[i].getPrice()) + " USD  " 
 					+ Products.values()[i] + "\n");
 		}
-
-		Basket basket1 = new Basket();
-
-		Item[] addedItems = basket1.giveUsOrder(); 
-		basket1.addManyItemsToBasket(basket1, addedItems);
-		basket1.showTheTotalBasketValue(basket1);
+	
+		  Basket basket1 = new Basket(); 
+		  
+		  Item[] addedItems = basket1.giveUsOrder(); 
+		  basket1.addManyItemsToBasket(basket1, addedItems);
+		  basket1.showTheTotalBasketValue(basket1);
 	}
 }
