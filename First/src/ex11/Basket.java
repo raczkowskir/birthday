@@ -1,12 +1,39 @@
 package ex11;
-import java.util.InputMismatchException;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.TreeMap;
+import static ex11.OrderHelper.*;
 
 public class Basket {
 
 	Map<Integer, Item> orderedItems = new TreeMap<Integer, Item>();
+
+	private Item[] giveUsOrder() {
+		int i = 0;
+		String Ids = "0123456789";
+		
+		System.out.println("Type how many products you want to add:");
+		int arrayLength = getNumber();
+		Item[] addedItems = new Item[arrayLength];
+		
+		System.out.println("Type the Id number of product you want to add:");
+		
+		while(i < arrayLength) {
+			Integer orderInt = getNumber();
+			String orderString = String.valueOf(orderInt);
+			if (Ids.contains(orderString)) {
+				addedItems[i] = new Item(String.valueOf(Products.values()[orderInt]), Products.values()[orderInt].getPrice()); 			
+				if (i < (arrayLength - 1)) {
+					System.out.println("Done, type ID number for the another one:");
+				}
+				i++;
+			}
+			else {
+				System.out.println("You can only type digits (0-9).");
+			}
+		}
+		
+		return addedItems; 
+	}	
 
 	private void addManyItemsToBasket(Basket basket, Item[] item) {
 		System.out.println("To your basket has been added: ");
@@ -15,57 +42,8 @@ public class Basket {
 			System.out.println(item[i].name + " ");
 		}
 	}
-
-	private void removeManyItemsFromBasket(Basket basket, Integer[] key) {
-		for(int i = 0; i < key.length; i++) {
-			System.out.println("From your basket has been removed: " + basket.orderedItems.get(key[i]).name + " ");			
-			basket.orderedItems.remove(key[i]);
-		}
-	}
-
-	private int getNumber() {
-		Scanner scan = new Scanner(System.in);
-		int number = 0;
-		try {	
-			number = scan.nextInt();
-		}
-		
-		// what to do with InputMismatchException ?
-		catch(ArrayIndexOutOfBoundsException|InputMismatchException e) {
-			System.out.println("You can only type digits (0-9).");
-			getNumber();
-		}
-		return number;
-	}
 	
-	private Item[] giveUsOrder() {
-		int i = 0;
-		String Ids = "0123456789";
-		
-		System.out.println("Type how many products you want to add:");
-		int arrayLength = getNumber();
-			
-		Item[] addedItems = new Item[arrayLength];
-		
-		System.out.println("Type the Id number of product you want to add:");
-		
-		while(i < arrayLength) {
-			Integer orderInt = getNumber();
-			String orderString = String.valueOf(orderInt);
-			// try catch for ArrayIndexOutOfBoundsException needed
-			if (Ids.contains(orderString)) {
-				addedItems[i] = new Item(String.valueOf(Products.values()[orderInt]), Products.values()[orderInt].getPrice()); 			
-				if (i < (arrayLength - 1)) {
-					System.out.println("Done, type ID number for the another one:");
-				}
-				i++;
-			} 
-		}
-		
-		return addedItems; 
-	}	
-
-	private void showTheTotalBasketValue(Basket basket) {
+	private void showBasketValue(Basket basket) {
 		System.out.println("\n The basket size is: " + basket.orderedItems.size());
 		System.out.print(" In your basket you have: \n");
 
@@ -78,24 +56,33 @@ public class Basket {
 				totalPrice = totalPrice + basket.orderedItems.get(i).price;
 			}
 			else {
-				sizeOfBasket++;		
+				i--;		
 			}
 		}
 		System.out.println("\n The total price of your basket is " 
 				+ String.format("%.2f", totalPrice) + " USD. \n");	
-		
-		allowToRemoveProducts(basket, sizeOfBasket);
-		showTheTotalBasketValue(basket);
 	}
 
-	private void allowToRemoveProducts(Basket basket, int sizeOfBasket) {
-		System.out.println("How many products you want to remove from your basket (if none, type 999):");
+	private void allowToRemoveProducts(Basket basket) {
+		System.out.println("How many products you want to remove from your basket (if none, type 0):");
 		
+		int sizeOfBasket = basket.orderedItems.size();
 		int i = 0;
-		
 		int arrayLength = getNumber();
+		boolean tooManyProductsToRemove = true;
+		while(tooManyProductsToRemove) {
+			if (arrayLength > sizeOfBasket) {
+				System.out.println("You do not have so many products in your basket,"
+						+ " please type the correct number.");
+				arrayLength = getNumber();
+			}
+			if (arrayLength <= sizeOfBasket) {
+				tooManyProductsToRemove = false;
+			}
+		}
 		
-		if (arrayLength == 999) {
+		
+		if (arrayLength == 0) {
 			return;
 		}
 		
@@ -119,24 +106,27 @@ public class Basket {
 			i++;
 		}
 		
-		removeManyItemsFromBasket(basket, objectsForRemoving);
+		removeItemsFromBasket(basket, objectsForRemoving);
 	}
 	
+	private void removeItemsFromBasket(Basket basket, Integer[] key) {
+		for(int i = 0; i < key.length; i++) {
+			System.out.println("From your basket has been removed: " + basket.orderedItems.get(key[i]).name + " ");			
+			basket.orderedItems.remove(key[i]);
+		}
+	}
+	
+
 	public static void main(String[] args) { 
 
-		System.out.println("Please chose the product you want to add to the basket.");
+		showProductsOnShelf(); 
 
-		for(int i = 0; i< Products.values().length; i++) {
-			System.out.print(" ID:" 
-					+ Products.values()[i].ordinal()
-					+ "  " + String.format("%.2f", Products.values()[i].getPrice()) + " USD  " 
-					+ Products.values()[i] + "\n");
-		}
-	
-		  Basket basket1 = new Basket(); 
-		  
-		  Item[] addedItems = basket1.giveUsOrder(); 
-		  basket1.addManyItemsToBasket(basket1, addedItems);
-		  basket1.showTheTotalBasketValue(basket1);
+		Basket basket = new Basket(); 
+		Item[] addedItems = basket.giveUsOrder();
+		
+		basket.addManyItemsToBasket(basket, addedItems);
+		basket.showBasketValue(basket);
+		basket.allowToRemoveProducts(basket);
+		basket.showBasketValue(basket);
 	}
 }
