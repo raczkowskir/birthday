@@ -7,7 +7,7 @@ public class Basket {
 
 	Map<Integer, Item> orderedItems = new TreeMap<Integer, Item>();
 
-	private Item[] giveUsOrder() {
+	public Item[] giveUsOrder() {
 		int i = 0;
 		String Ids = "0123456789";
 		
@@ -35,7 +35,7 @@ public class Basket {
 		return addedItems; 
 	}	
 
-	private void addManyItemsToBasket(Basket basket, Item[] item) {
+	public void addManyItemsToBasket(Basket basket, Item[] item) {
 		System.out.println("To your basket has been added: ");
 		for(int i = 0; i < item.length; i++) {
 			basket.orderedItems.put(i, item[i]);
