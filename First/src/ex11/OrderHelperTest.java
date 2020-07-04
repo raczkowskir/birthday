@@ -1,6 +1,7 @@
 package ex11;
 
 import static ex11.OrderHelper.getNumber;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -11,12 +12,18 @@ import org.junit.Test;
 public class OrderHelperTest {
 
 	public static Basket myBasket;
-	public static Item[] items;
+	public static Item items[] = new Item[2];
 
+//	Item items[] = {new Item("MILK", 2.20), new Item("MILK", 2.20)};
+	
 	@BeforeClass
 	public static void createBasketAndItems() {
 		myBasket = new Basket();
-		Item items[] = {new Item("MILK", 2.20), new Item("MILK", 2.20)};
+	
+		for(int i = 0; i < 2; i++) {
+			items[i] = new Item("MILK", 2.20);
+		}
+		myBasket.addManyItemsToBasket(myBasket, items);
 	}
 
 	@Test
@@ -42,16 +49,16 @@ public class OrderHelperTest {
 	@Test
 	public void testAddManyItems() {
 		myBasket.addManyItemsToBasket(myBasket, items);
-//		assertEquals("Bannanas", myBasket.orderedItems.get(0).name);
+		assertEquals("MILK", myBasket.orderedItems.get(0).name);
+		System.out.println("testAddManyItems passed");
 	}
 	
-//	private void addManyItemsToBasket(Basket basket, Item[] item) {
-//		System.out.println("To your basket has been added: ");
-//		for(int i = 0; i < item.length; i++) {
-//			basket.orderedItems.put(i, item[i]);
-//			System.out.println(item[i].name + " ");
-//		}
-//	}
+	
+	@Test
+	public void testShowBasketValue() {
+		myBasket.showBasketValue(myBasket);
+		System.out.println("testShowBasketValue passed");
+	}
 	
 	@AfterClass
 	public static void flush() {

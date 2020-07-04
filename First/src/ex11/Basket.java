@@ -43,7 +43,7 @@ public class Basket {
 		}
 	}
 	
-	private void showBasketValue(Basket basket) {
+	public void showBasketValue(Basket basket) {
 		System.out.println("\n The basket size is: " + basket.orderedItems.size());
 		System.out.print(" In your basket you have: \n");
 
